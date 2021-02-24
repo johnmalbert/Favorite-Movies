@@ -1,0 +1,18 @@
+@* we can use a different model *@
+
+@model LoginUser
+
+<form action="login" method="post">
+    <div class='form-group'>
+        <label asp-for='LoginEmail'></label>
+        <input class='form-control' asp-for='LoginEmail' placeholder='Email Address'>
+        <span asp-validation-for='LoginEmail'></span>
+    </div> 
+    <div class='form-group'>
+        <label asp-for='LoginPassword'></label>
+        <input class='form-control' asp-for='LoginPassword' placeholder='Enter Password'>
+        <span asp-validation-for='LoginPassword'></span>
+    </div>     
+    <button type="submit">Submit</button>
+</form>
+

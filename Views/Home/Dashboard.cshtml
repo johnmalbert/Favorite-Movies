@@ -1,0 +1,55 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+@* ViewBag.CurrentUser *@
+<p>Hi @ViewBag.CurrentUser.FirstName!</p>
+<a href="/logout">Log out</a>
+@{ User CurrentUser = ViewBag.CurrentUser;}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Release</th>
+            <th>Starring</th>
+            <th>Posted by</th>
+            <th>Likes</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Movie movie in @ViewBag.AllMovies)
+        {
+            <tr>
+                <td>
+                    <a href="/movies/@movie.MovieId">@movie.Title</a>
+                </td>
+                <td>@movie.ReleaseDate.ToString("d")</td>
+                <td>@movie.Starring</td>
+                <td>@movie.PostedBy.FirstName</td>
+                <td>@movie.Likes.Count</td>
+                <td>
+                    @if(ViewBag.CurrentUser.UserId == movie.PostedBy.UserId)
+                    {
+                        <form action="/movies/@movie.MovieId/delete" method="post">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    }
+                    else if(movie.Likes.Any(Like => Like.UserId == CurrentUser.UserId))
+                    {
+                        <form action="/movies/@movie.MovieId/likes/delete" method="post">
+                            <button class="btn btn-warning">Unlike</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <form action="/movies/@movie.MovieId/likes" method="post">
+                            <button class="btn btn-primary">Like</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@* table>thead>tr>th*6 *@
+<a href="movies/new">Add New</a>

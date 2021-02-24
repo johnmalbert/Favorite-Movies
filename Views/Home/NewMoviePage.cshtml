@@ -1,0 +1,25 @@
+@model Movie
+<h1>Post a Movie</h1>
+<form action="/movies" method="post">
+    <div class='form-group'>
+        <label asp-for="Title"></label>
+        <input class="form-control" asp-for="Title" placeholder= "Enter Movie Title">
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>      
+    <div class='form-group'>
+        <label asp-for="Starring"></label>
+        <input class="form-control" asp-for="Starring" placeholder= "Enter Star">
+        <span asp-validation-for="Starring" class="text-danger"></span>
+    </div> 
+    <div class='form-group'>
+        <label asp-for="ImageUrl"></label>
+        <input class="form-control" asp-for="ImageUrl" placeholder= "Enter a Url">
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div> 
+    <div class='form-group'>
+        <label asp-for="ReleaseDate"></label>
+        <input class="form-control" asp-for="ReleaseDate" placeholder= "Enter a Date">
+        <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+    </div> 
+    <button type="submit" class="btn btn-submit">Submit</button>
+</form>
